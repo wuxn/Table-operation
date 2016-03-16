@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>表格增删改</title>
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
+<script type="text/javascript">
+// 表格添加行
+var id=4;
+function addRow(){
+    var table=document.getElementById("table");
+    var addname=document.getElementById("addname");
+    
+    var row=table.insertRow(-1);
+    // 添加行的id
+    row.id="row"+id;
+    // insertCell() 方法用于在 HTML 表的一行的指定位置插入一个空的 <td> 元素。
+    var cell1=row.insertCell(-1);
+    var cell2=row.insertCell(-1);
+    var cell3=row.insertCell(-1);
+    var cell4=row.insertCell(-1);
+
+    cell1.innerHTML=addname.value;
+    cell2.innerHTML = "0"+id;
+    cell3.innerHTML='<a href="#" onclick="modify(this)">修改</a>'
+    cell4.innerHTML='<a href="#" onclick="deleteRow(this)">删除</a>'
+    id++;
+
+
+}
+// 删除行
+function deleteRow(row){
+    if(confirm("确定要删除我吗O(∩_∩)O？")){
+        var r=row.parentNode.parentNode.rowIndex;
+        document.getElementById("table").deleteRow(r);
+    }
+    
+}
+// 修改
+function modify(row){
+    var table=document.getElementById("table");
+    var row=row.parentNode.parentNode.rowIndex;
+    var name=document.getElementById("name").value;
+    var number=document.getElementById("number").value;
+    table.rows[row].cells[0].innerHTML=name;
+    table.rows[row].cells[1].innerHTML=number;
+   
+
+}
+</script>
+</head>
+<body>
+    <a href="#" onclick="addRow()">添加么么哒</a>
+    <p>姓名：<input type="text" id="addname"></p>
+    <table class="table" id="table">
+        <tr> 
+            <td>姓名</td>
+            <td>学号</td>
+            <td>操作</td>
+            <td></td>
+        </tr>
+        <tr> 
+            <td>🐰朱迪</td>
+            <td>01</td>
+            <td><a href="#" onclick="modify(this)">修改</a></td>
+            <td><a href="#" onclick="deleteRow(this)">删除</a></td>
+        </tr>
+         <tr> 
+            <td>狐尼克</td>
+            <td>02</td>
+            <td><a href="#" onclick="modify(this)">修改</a></td>
+            <td><a href="#" onclick="deleteRow(this)">删除</a></td>
+        </tr>
+         <tr> 
+           <td>闪...电...</td>
+            <td>03</td>
+            <td><a href="#" onclick="modify(this)">修改</a></td>
+            <td><a href="#" onclick="deleteRow(this)">删除</a></td>
+        </tr>
+    </table>
+    <p>修改摸摸哒</p>
+    姓名：<input type="text" id="name"> 学号：<input type="text" id="number">    
+</body>
+</html>
